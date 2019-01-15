@@ -7,16 +7,16 @@ const users = [
 ];
 
 function showManagementStructure(usersArr) {
-  const management = [usersArr[0].name];
   usersArr.forEach((user, index) => {
     if (user.hasOwnProperty('managerId')) {
       const previousUser = usersArr[index - 1];
-      let manager = ` - ${user.name}`;
-      if (user.managerId > previousUser.managerId) manager = `\t${manager}`;
-      management.push(manager);
+      let prefix = ' -';
+      if (user.managerId > previousUser.managerId) prefix = '\t' + prefix;
+      console.log(prefix, user.name);
+    }else {
+      console.log(user.name);
     }
   });
-  console.log(management.join('\n'));
 }
 
 showManagementStructure(users);
