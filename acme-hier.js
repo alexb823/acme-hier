@@ -1,22 +1,18 @@
-const users = [
-  { id: 1, name: 'moe' },
-  { id: 2, name: 'larry', managerId: 1 },
-  { id: 3, name: 'curly', managerId: 2 },
-  { id: 4, name: 'shep', managerId: 1 },
-  { id: 5, name: 'groucho', managerId: 4 },
-];
-
 function showManagementStructure(usersArr) {
-  usersArr.forEach((user, index) => {
-    if (user.hasOwnProperty('managerId')) {
-      const previousUser = usersArr[index - 1];
-      let prefix = ' -';
-      if (user.managerId > previousUser.managerId) prefix = '\t' + prefix;
-      console.log(prefix, user.name);
-    }else {
-      console.log(user.name);
-    }
-  });
+  const boss = usersArr.find(user => !user.managerId);
+  return showUser(boss, usersArr, '').join('\n');
 }
 
-showManagementStructure(users);
+function showUser(boss, usersArr, level) {
+  let structure = [`${level}${boss.name}`];
+  const reportToBoss = usersArr.filter(user => user.managerId === boss.id);
+  if (reportToBoss.length) {
+    level += '- ';
+    reportToBoss.forEach(report => {
+      structure = [...structure, ...showUser(report, usersArr, level)];
+    });
+  }
+  return structure;
+}
+
+module.exports = showManagementStructure;

@@ -1,0 +1,23 @@
+{
+  "name": "acme-hier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "acme-hier.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexb823/acme-hier.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexb823/acme-hier/issues"
+  },
+  "homepage": "https://github.com/alexb823/acme-hier#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
